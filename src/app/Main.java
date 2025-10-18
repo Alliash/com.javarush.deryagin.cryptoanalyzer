@@ -5,7 +5,7 @@ import core.CaesarCipher;
 public class Main {
     public static void main(String[] args) {
         String original = "привет, как дела? 123";
-        int key = 7;
+        int key = 333;
 
         String encrypted = CaesarCipher.encryptText(original, key);
         String decrypted = CaesarCipher.decryptText(encrypted, key);

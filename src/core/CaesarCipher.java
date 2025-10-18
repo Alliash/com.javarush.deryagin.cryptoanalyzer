@@ -14,6 +14,7 @@ public class CaesarCipher {
     }
 
     static char moveSymbol(char ch, int key) { //реализация сдвига
+        key = normalizeKey(key);
         int symbolPosition = Alphabet.indexOf(ch); // ищем индекс символа в алфавите
         if (symbolPosition == -1) return ch; // Если символ не найден возвращаем его не ломая текст
         int alphabetSize  = Alphabet.size(); // получаем размер алфавита что бы не выйти за пределы массива
