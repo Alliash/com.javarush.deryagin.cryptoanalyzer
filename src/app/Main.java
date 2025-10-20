@@ -15,14 +15,20 @@ public class Main {
         System.out.println("Выберите режим");
         System.out.println("1 - Шифровка файла");
         System.out.println("2 - Расшифровка файла");
+        System.out.println("3 - BruteForce");
         int choice = scanner.nextInt();
-        scanner.nextLine();
+        scanner.nextLine(); //очистка буфера
+
         System.out.println("Введите путь исходного файла: ");
         String inputPath = scanner.nextLine();
+
         System.out.println("Введите куда сохранять файл результата с указанием имени файла в его формате");
         String outputPath = scanner.nextLine();
-        System.out.println("Введите ключ: ");
-        int key = scanner.nextInt();
+        int key = 0;
+        if (choice == 1 || choice == 2){
+            System.out.println("Введите ключ: ");
+            key = scanner.nextInt();
+        }
 
         try{
         if (choice == 1){
@@ -31,7 +37,11 @@ public class Main {
         } else if (choice ==2) {
             ReaderWriter.decryptFile(inputPath, outputPath, key);
             System.out.println("Файл успешно расшифрован и сохранён в: " + outputPath);
-        }else {
+
+        }else if(choice ==3) {
+            ReaderWriter.decryptFileBruteForce(inputPath,outputPath);
+            System.out.println("Взлом завершён, результат сохранён в: " + outputPath);
+        } else {
             System.out.println("Неизвестная ошибка");
         }
         } catch (IOException err){
