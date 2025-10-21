@@ -6,7 +6,7 @@ import util.Alphabet;
 public final class BruteForce { // я запрещаю вам наследоваться
     private BruteForce(){} //приватный конструктор, никаких новых объектов
 
-    public static int FindKey(String fragment){
+    public static int findKey(String fragment){
         int bestKey = 0; //лучший ключ
         int bestScore = Integer.MIN_VALUE; //что бы первая проверка победила
 

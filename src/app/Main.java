@@ -1,9 +1,7 @@
 package app;
 
-import core.CaesarCipher;
 import io.ReaderWriter;
 import java.io.IOException;
-import javax.imageio.IIOException;
 import java.util.Scanner;
 
 //тестовая сборка
@@ -22,7 +20,8 @@ public class Main {
         System.out.println("Введите путь исходного файла: ");
         String inputPath = scanner.nextLine();
 
-        System.out.println("Введите куда сохранять файл результата с указанием имени файла в его формате");
+        System.out.println("Введите куда сохранять файл результата с указанием имени файла в его формате: ");
+        System.out.println("\u001B[31m" + "Внимание! Если вы не введёте директорию, то файл будет сохранён в корень проекта");
         String outputPath = scanner.nextLine();
         int key = 0;
         if (choice == 1 || choice == 2){
