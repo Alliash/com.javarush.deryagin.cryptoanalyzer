@@ -37,6 +37,9 @@ public final class ReaderWriter { //запрещаем наследоватьс�
                 writer.write(transformed); //пишем строку в аутпут файл
                 writer.newLine(); //перекидываемся на новую строку
             }
+        } catch (IOException e){
+            System.out.println("Ошибка при обработке файла: " + inputPath + " -> " + outputPath + ". " + e.getMessage());
+            throw e; //прокидываем в main что бы он мог завершить программу
         }
     }
     public static void decryptFileBruteForce(String inputPath, String outputPath) throws IOException {
@@ -49,6 +52,9 @@ public final class ReaderWriter { //запрещаем наследоватьс�
                 builder.append(line.toLowerCase()); // Добавляем прочитанную строку в Builder
                 builder.append(' '); // пробел между строками что бы слова в конце строки не сливались в одно слово
             }
+        }catch (IOException e){
+            System.out.println("Не удалось прочитать начало файла для brute force: " + inputPath + ". " + e.getMessage());
+            throw e;
         }
 
         String sample = builder.toString(); //переводим то что накопили в String sample

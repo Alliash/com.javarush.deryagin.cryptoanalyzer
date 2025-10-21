@@ -45,7 +45,8 @@ public class Main {
             System.out.println("Неизвестная ошибка");
         }
         } catch (IOException err){
-            System.out.println("Ошибка при работе с файлов" + err.getMessage());
+            System.out.println("Ошибка при работе с файлом " + err.getMessage());
+            err.printStackTrace();
         }
     }
 }
