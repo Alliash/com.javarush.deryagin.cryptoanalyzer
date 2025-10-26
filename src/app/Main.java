@@ -1,51 +1,78 @@
 package app;
 
+import constants.AppConstants;
 import io.ReaderWriter;
+
 import java.io.IOException;
 import java.util.Scanner;
 
-//тестовая сборка
 public class Main {
     public static void main(String[] args) {
+
+        System.out.println(AppConstants.WELCOME);
+        System.out.println(AppConstants.MENU);
+        System.out.println(AppConstants.MENU_ENCRYPT);
+        System.out.println(AppConstants.MENU_DECRYPT);
+        System.out.println(AppConstants.MENU_BRUTE_FORCE);
+        System.out.println(AppConstants.EXIT);
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("...Шифратор Soft by Andrey...");
-        System.out.println("Выберите режим");
-        System.out.println("1 - Шифровка файла");
-        System.out.println("2 - Расшифровка файла");
-        System.out.println("3 - BruteForce");
-        int choice = scanner.nextInt();
-        scanner.nextLine(); //очистка буфера
+        int choice = -1;
 
-        System.out.println("Введите путь исходного файла: ");
+        while (choice <0 || choice > 3) {
+            if (!scanner.hasNextInt()){
+                System.out.println(AppConstants.ERROR_INPUT);
+                scanner.nextLine();
+                continue;
+            }
+            choice = scanner.nextInt();
+            scanner.nextLine();
+
+            if (choice < 0 || choice > 3){
+                System.out.println(AppConstants.ERROR_INPUT);
+            }
+        }
+        if (choice == 0){
+            System.out.println(AppConstants.EXIT_SUCCESS);
+            scanner.close();
+            System.exit(0);
+        }
+
+        System.out.println(AppConstants.INPUT_PATH);
         String inputPath = scanner.nextLine();
-
-        System.out.println("Введите куда сохранять файл результата с указанием имени файла в его формате: ");
-        System.out.println("\u001B[31m" + "Внимание! Если вы не введёте директорию, то файл будет сохранён в корень проекта");
-
+        System.out.println(AppConstants.OUTPUT_PATH);
+        System.out.println(AppConstants.WARNING);
         String outputPath = scanner.nextLine();
+
         int key = 0;
-        if (choice == 1 || choice == 2){
-            System.out.println("Введите ключ: ");
+        if (choice == 1 || choice == 2) {
+            System.out.print(AppConstants.KEY);
+            while (!scanner.hasNextInt()) {
+                System.out.println(AppConstants.ERROR_KEY);
+                scanner.nextLine();
+                System.out.print(AppConstants.KEY);
+            }
             key = scanner.nextInt();
+            scanner.nextLine();
         }
 
-        try{
-        if (choice == 1){
-            ReaderWriter.encryptFile(inputPath, outputPath, key);
-            System.out.println("Файл успешно зашифрован и сохранён в: " + outputPath);
-        } else if (choice ==2) {
-            ReaderWriter.decryptFile(inputPath, outputPath, key);
-            System.out.println("Файл успешно расшифрован и сохранён в: " + outputPath);
+        try {
+            if (choice == 1) {
+                ReaderWriter.encryptFile(inputPath, outputPath, key);
+                System.out.println(AppConstants.ENCRYPT_SUCCESS + outputPath);
+            } else if (choice == 2) {
+                ReaderWriter.decryptFile(inputPath, outputPath, key);
+                System.out.println(AppConstants.DECRYPT_SUCCESS + outputPath);
 
-        }else if(choice ==3) {
-            ReaderWriter.decryptFileBruteForce(inputPath,outputPath);
-            System.out.println("Взлом завершён, результат сохранён в: " + outputPath);
-        } else {
-            System.out.println("Неизвестная ошибка");
-        }
-        } catch (IOException err){
-            System.out.println("Ошибка при работе с файлом " + err.getMessage());
+            } else if (choice == 3) {
+                ReaderWriter.decryptFileBruteForce(inputPath, outputPath);
+                System.out.println(AppConstants.BRUTE_FORCE_SUCCESS + outputPath);
+            } else {
+                System.out.println(AppConstants.UNKNOWN_ERROR);
+            }
+        } catch (IOException err) {
+            System.out.println(AppConstants.FILE_ERROR + err.getMessage());
             err.printStackTrace();
         }
     }
