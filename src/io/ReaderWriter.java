@@ -10,12 +10,8 @@ public final class ReaderWriter {                                               
     }                                                                                                                   //запрещаем создавать всякие новые new Reader Writer
 
 
-    public static void encryptFile(String inputPath, String outputPath, int key) throws IOException {                   //Шифровка файла
-        convertFile(inputPath, outputPath, key, true);
-    }
-
-    public static void decryptFile(String inputPath, String outputPath, int key) throws IOException {                   //дешифровка файла
-        convertFile(inputPath, outputPath, key, false);
+    public static void cryptFile(String inputPath, String outputPath, int key, boolean encrypt) throws IOException {
+        convertFile(inputPath, outputPath, key, encrypt);
     }
 
     private static void convertFile(String inputPath, String outputPath, int key, boolean encrypt) throws IOException { // читаем строку - конвертируем - записываем //Boolean отвечает за выбор режима
@@ -27,8 +23,8 @@ public final class ReaderWriter {                                               
             while ((line = reader.readLine()) != null) {                                                                //читаем построчно пока не закончится
 
                 String lower = line.toLowerCase();                                                                      //Приводим алфавит к нижнему регистру
-
                 String transformed;                                                                                     // конвертация строки
+
                 if (encrypt) {
                     transformed = CaesarCipher.encryptText(lower, key);
                 } else {
@@ -68,6 +64,6 @@ public final class ReaderWriter {                                               
         int foundKey = BruteForce.findKey(sample);                                                                      // перебирает ключи и возвращает лучший по метрике
         System.out.println("Ключ найден: " + foundKey);
 
-        decryptFile(inputPath, outputPath, foundKey);                                                                   //Читает входной файл, записывает новый с переданным ключём
+        cryptFile(inputPath, outputPath, foundKey, false);                                                                   //Читает входной файл, записывает новый с переданным ключём
     }
 }

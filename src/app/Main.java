@@ -59,10 +59,10 @@ public class Main {
 
         try {
             if (choice == 1) {
-                ReaderWriter.encryptFile(inputPath, outputPath, key);
+                ReaderWriter.cryptFile(inputPath, outputPath, key, true);
                 System.out.println(AppConstants.ENCRYPT_SUCCESS + outputPath);
             } else if (choice == 2) {
-                ReaderWriter.decryptFile(inputPath, outputPath, key);
+                ReaderWriter.cryptFile(inputPath, outputPath, key, false);
                 System.out.println(AppConstants.DECRYPT_SUCCESS + outputPath);
 
             } else if (choice == 3) {
