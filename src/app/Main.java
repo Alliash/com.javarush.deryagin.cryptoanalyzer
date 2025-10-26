@@ -22,6 +22,7 @@ public class Main {
 
         System.out.println("Введите куда сохранять файл результата с указанием имени файла в его формате: ");
         System.out.println("\u001B[31m" + "Внимание! Если вы не введёте директорию, то файл будет сохранён в корень проекта");
+
         String outputPath = scanner.nextLine();
         int key = 0;
         if (choice == 1 || choice == 2){
@@ -49,6 +50,3 @@ public class Main {
         }
     }
 }
-
-
-
