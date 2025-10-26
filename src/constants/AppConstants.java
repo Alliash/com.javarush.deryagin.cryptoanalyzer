@@ -1,10 +1,12 @@
 package constants;
 
 public interface AppConstants {
+    //сброс красного текста
     String RED_TEXT = "\u001B[31m";
     String RED_RESET = "\u001B[0m";
 
 
+    //меню и выбор
     String WELCOME = "...Шифратор Soft by Andrey...";
      String MENU = "\"Выберите режим\"";
      String MENU_ENCRYPT = "1 - Шифровка файла";
@@ -26,5 +28,6 @@ public interface AppConstants {
      String UNKNOWN_ERROR = "Неизвестная ошибка";
      String FILE_ERROR = "Ошибка при работе с файлами: ";
 
+     //Остальное
      String WARNING = RED_TEXT + "Внимание! Если вы не введёте директорию, то файл будет сохранён в корень проекта" + RED_RESET;
 }

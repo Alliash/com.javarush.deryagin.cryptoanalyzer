@@ -9,7 +9,6 @@ public final class ReaderWriter {                                               
     private ReaderWriter() {
     }                                                                                                                   //запрещаем создавать всякие новые new Reader Writer
 
-
     public static void cryptFile(String inputPath, String outputPath, int key, boolean encrypt) throws IOException {
         convertFile(inputPath, outputPath, key, encrypt);
     }
@@ -21,7 +20,6 @@ public final class ReaderWriter {                                               
 
             String line;                                                                                                // Сюда по очереди читаем строки исходного файла
             while ((line = reader.readLine()) != null) {                                                                //читаем построчно пока не закончится
-
                 String lower = line.toLowerCase();                                                                      //Приводим алфавит к нижнему регистру
                 String transformed;                                                                                     // конвертация строки
 
@@ -30,7 +28,6 @@ public final class ReaderWriter {                                               
                 } else {
                     transformed = CaesarCipher.decryptText(lower, key);
                 }
-
                 writer.write(transformed);                                                                              //пишем строку в аутпут файл
                 writer.newLine();                                                                                       //перекидываемся на новую строку
             }
@@ -59,7 +56,6 @@ public final class ReaderWriter {                                               
         if (sample.isEmpty()) {                                                                                         //если то что накопили пустое  выбрасываем ошибку
             throw new IOException("Файл пуст или не доступен для чтения: " + inputPath); //
         }
-
                                                                                                                         // вызов метода в attack
         int foundKey = BruteForce.findKey(sample);                                                                      // перебирает ключи и возвращает лучший по метрике
         System.out.println("Ключ найден: " + foundKey);

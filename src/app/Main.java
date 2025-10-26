@@ -33,6 +33,7 @@ public class Main {
                 System.out.println(AppConstants.ERROR_INPUT);
             }
         }
+
         if (choice == 0){
             System.out.println(AppConstants.EXIT_SUCCESS);
             scanner.close();
